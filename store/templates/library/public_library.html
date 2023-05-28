@@ -1,0 +1,14 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+{% include 'header.html' %}
+
+<h1>Library</h1>
+
+{% for asset in assets %}
+<p>{{ asset.name }}</p>
+{% endfor %}
+
+
+{% endblock content %}

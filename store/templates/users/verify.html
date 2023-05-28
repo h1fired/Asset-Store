@@ -1,0 +1,27 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+{% include 'header.html' %}
+
+<h1>Verify Account</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ verify_form.as_p }}
+    <a href="{% url 'otp_resend' %}">Resend confirmation code</a>
+    <button type="submit">Verify</button>
+</form>
+
+<hr>
+<h3>Messages:</h3>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+
+{% endblock content %}
