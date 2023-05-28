@@ -1,0 +1,16 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+{% include 'header.html' %}
+
+<h1>Sign Up</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ signup_form.as_p }}
+    <button type="submit">Create Account</button>
+</form>
+
+
+{% endblock content %}

@@ -1,0 +1,17 @@
+<header>
+    <nav>
+        <ul>
+            <li><a href="{% url 'mainpage' %}">Main</a></li>
+            <br>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'logout' %}">Log Out</a></li>
+            {% else %}
+            <li><a href="{% url 'signup' %}">Sign Up</a></li>
+            <li><a href="{% url 'signin' %}">Sign In</a></li>
+            {% endif %}
+            <br>
+            <li><a href="{% url 's_account' %}">Settings</a></li>
+        </ul>
+    </nav>
+    <hr>
+</header>

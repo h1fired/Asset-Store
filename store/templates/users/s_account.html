@@ -1,0 +1,61 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+{% include 'header.html' %}
+
+<h1>Settings: Account</h1>
+
+<h3>Pages:</h3>
+<li><a href="{% url 's_account' %}">Account</a></li>
+<hr>
+
+{% if user.picture.url is not null %}
+<img src="{{ user.picture.url }}" width="64px" alt="">
+{% endif %}
+
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ picture_form.as_p }}
+    <button name="f_picture" type="submit">Change Picture</button>
+</form>
+
+<br>
+
+<form method="post">
+    {% csrf_token %}
+    {{ username_form.as_p }}
+    <button name="f_username" type="submit">Change Username</button>
+</form>
+
+<br>
+
+<label for="">E-Mail</label>
+<input type="text" name="username" value="{{ user.email }}" disabled>
+{% if user.is_verified %}
+<button type="submit" disabled>Verified</button>
+{% else %}
+<a href="{% url 'otp_verify' %}"><button type="submit">Verify</button></a>
+{% endif %}
+
+
+<br>
+
+<form method="post">
+    {% csrf_token %}
+    {{ password_form.as_p }}
+    <button name='f_password' type="submit">Change</button>
+</form>
+
+
+<hr>
+<h3>Messages:</h3>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endblock content %}
